@@ -42,21 +42,25 @@ def feature_engineering(df):
     df['fire_potential'] = df['temp'] * df['wind']
     return df
 
-def explore_data(df):
+def explore_data(df, save_path="output_graphs"):
     """Performs data exploration including feature correlations and burnt area distribution visualization."""
-    
-    # Generate and display a heatmap to visualize feature correlations
+    if not os.path.exists(save_path):
+        os.makedirs(save_path)  # Create directory if it doesn't exist
+
+    # Generate and save a heatmap to visualize feature correlations
     plt.figure(figsize=(12, 8))
     sns.heatmap(df.corr(), annot=True, cmap='coolwarm', fmt='.2f')
     plt.title("Feature Correlation Heatmap")
-    plt.show()
-    
-    # Plot the distribution of the burnt area
-    plot_burnt_area_distribution(df)
+    heatmap_path = os.path.join(save_path, "correlation_heatmap.png")
+    plt.savefig(heatmap_path)  # Save the figure
+    plt.close()
+    print(f"Correlation heatmap saved to {heatmap_path}")
 
-def plot_burnt_area_distribution(df):
-    """Plots the distribution of burnt area with a more spread-out x-axis."""
-    
+    # Plot and save the burnt area distribution
+    plot_burnt_area_distribution(df, save_path)
+
+def plot_burnt_area_distribution(df, save_path="output_graphs"):
+    """Plots the distribution of burnt area and saves the plot."""
     plt.figure(figsize=(10, 5))
     sns.histplot(df['area'], bins=100, kde=True)
     plt.title("Burnt Area Distribution")
@@ -65,7 +69,12 @@ def plot_burnt_area_distribution(df):
     
     # Limit x-axis to exclude extreme outliers and enhance visualization
     plt.xlim(0, df['area'].quantile(0.99))
-    plt.show()
+
+    # Save the plot as an image file
+    distribution_path = os.path.join(save_path, "burnt_area_distribution.png")
+    plt.savefig(distribution_path)
+    plt.close()
+    print(f"Burnt area distribution saved to {distribution_path}")
 
 def train_test_model(df):
     """Trains a Random Forest model with hyperparameter tuning and evaluates performance."""
@@ -121,8 +130,11 @@ def main():
     # Load the dataset into a Pandas DataFrame
     df = load_dataset(dataset_path)
     
-    # Perform exploratory data analysis
-    explore_data(df)
+    # Define where the images should be saved
+    save_path = "output_graphs"
+    
+    # Perform exploratory data analysis and save images
+    explore_data(df, save_path)
     
     # Preprocess numerical features
     df = preprocess_data(df)
