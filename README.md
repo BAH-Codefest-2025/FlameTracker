@@ -16,7 +16,7 @@
 
 ## 📂 Dataset
 - This dataset contains records of **517** forest fires from the Montesinho Natural Park in Portugal. Each fire incident includes details such as the day of the week, month, and geographic coordinates, along with the burnt area (in hectares). Additionally, it provides several meteorological variables, including rainfall, temperature, humidity, and wind speed, which are critical factors influencing fire behavior.
-- Dataset Source: [Forest Fire Area Dataset]([https://www.kaggle.com/competitions/forestfiresarea/overview](https://www.kaggle.com/datasets/sumitm004/forest-fire-area/data))
+- Dataset Source: [Forest Fire Area Dataset]([https://www.kaggle.com/competitions/forestfiresarea/overview])
 
 ---
 
