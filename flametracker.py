@@ -22,7 +22,7 @@ def create_jupyter_notebook():
     
     # Install required packages
     notebook.cells.append(nbf.v4.new_code_cell("""
-    !pip install pandas kagglehub matplotlib seaborn scikit-learn numpy
+    %pip install pandas kagglehub matplotlib seaborn scikit-learn numpy
     """))
     
     # Import libraries
