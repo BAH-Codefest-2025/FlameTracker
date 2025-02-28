@@ -62,6 +62,7 @@ This project is licensed under the **MIT License**.
 ---
 
 ## 🤝 Contributing
-Feel free to **fork** this repository, create a **feature branch**, and submit a **pull request**!
+Team Members: Anish Balasubramanian
+Mentor: Michael Cotter
 
 ---
